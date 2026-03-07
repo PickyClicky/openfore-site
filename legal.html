@@ -1,196 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Openfore Legal</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #17202a;
+      --muted: #5f6c7b;
+      --border: #dfe5ec;
+      --primary: #1f6feb;
+      --primary-hover: #1557b0;
+      --shadow: 0 10px 30px rgba(19, 33, 68, 0.08);
+      --radius: 18px;
+    }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Openfore Legal</title>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    html {
+      scroll-behaviour: smooth;
+    }
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-max-width:1000px;
-margin:auto;
-padding:40px 25px 80px;
-line-height:1.6;
-color:#222;
-background:#ffffff;
-}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(to bottom, #f8fafc 0%, #f3f6fa 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-h1{
-font-size:36px;
-border-bottom:2px solid #e6e6e6;
-padding-bottom:10px;
-}
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 22px 80px;
+    }
 
-p{
-margin:12px 0;
-}
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 40px 32px;
+      margin-bottom: 26px;
+    }
 
-.company-box{
-background:#f7f7f7;
-padding:18px;
-border:1px solid #e0e0e0;
-margin:25px 0;
-}
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(31, 111, 235, 0.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+    }
 
-.accordion{
-background:#f5f5f5;
-cursor:pointer;
-padding:16px;
-width:100%;
-border:none;
-text-align:left;
-outline:none;
-font-size:18px;
-transition:0.3s;
-margin-top:10px;
-border-radius:6px;
-}
+    h1 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
 
-.active, .accordion:hover{
-background:#e9e9e9;
-}
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+    }
 
-.panel{
-padding:0 16px;
-background:white;
-display:none;
-overflow:hidden;
-border:1px solid #e0e0e0;
-border-top:none;
-border-radius:0 0 6px 6px;
-}
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
 
-.doc-link{
-display:inline-block;
-margin:15px 0;
-padding:10px 18px;
-background:#2c7be5;
-color:white;
-text-decoration:none;
-border-radius:5px;
-font-weight:bold;
-}
+    .meta-card {
+      background: #f9fbfd;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
 
-.doc-link:hover{
-background:#1b5fc2;
-}
+    .meta-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
 
-.small{
-font-size:14px;
-color:#666;
-margin-top:40px;
-}
+    .meta-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      word-break: break-word;
+    }
 
-</style>
+    .legal-shell {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
+    .section-head {
+      padding: 26px 28px 14px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, #ffffff 0%, #fbfcfe 100%);
+    }
+
+    .section-head h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .accordion-list {
+      padding: 10px 18px 20px;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      margin: 14px 0;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .accordion-item:hover {
+      box-shadow: 0 8px 24px rgba(19, 33, 68, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      border: none;
+      background: transparent;
+      text-align: left;
+      padding: 22px 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .accordion-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 14px;
+      background: rgba(31, 111, 235, 0.08);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .doc-title {
+      margin: 0 0 4px;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .doc-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .chevron {
+      font-size: 24px;
+      line-height: 1;
+      color: var(--muted);
+      transition: transform 0.25s ease;
+    }
+
+    .accordion-item.active .chevron {
+      transform: rotate(45deg);
+    }
+
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+      background: #fcfdff;
+    }
+
+    .accordion-panel-inner {
+      padding: 0 22px 22px 84px;
+    }
+
+    .accordion-panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #c6d0db;
+      background: #f8fafc;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: centre;
+    }
+
+    .footer-note a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 24px 14px 56px;
+      }
+
+      .hero,
+      .legal-shell {
+        border-radius: 18px;
+      }
+
+      .hero {
+        padding: 26px 18px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .section-head {
+        padding: 22px 18px 10px;
+      }
+
+      .section-head h2 {
+        font-size: 24px;
+      }
+
+      .accordion-list {
+        padding: 8px 12px 16px;
+      }
+
+      .accordion-trigger {
+        padding: 18px 16px;
+      }
+
+      .accordion-panel-inner {
+        padding: 0 16px 18px 16px;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Legal Centre</div>
+      <h1>Openfore Legal</h1>
+      <p>
+        This page provides access to the legal policies that govern the Openfore platform,
+        including user rights, privacy practices, community standards, and compliance notices.
+      </p>
 
-<h1>Openfore Legal Center</h1>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">Platform</div>
+          <div class="meta-value">Openfore</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Operated by</div>
+          <div class="meta-value">PickyClicky Inc.</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Address</div>
+          <div class="meta-value">1653 Woodbine Heights Blvd., East York, ON, M4B 3A7, Canada</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Contact</div>
+          <div class="meta-value">legal@pickyclicky.com</div>
+        </div>
+      </div>
+    </section>
 
-<p>
-This page provides access to the legal policies governing the use of the Openfore platform.
-</p>
+    <section class="legal-shell">
+      <div class="section-head">
+        <h2>Legal documents</h2>
+        <p>Select any document below to learn what it covers, then open the full page.</p>
+      </div>
 
-<div class="company-box">
+      <div class="accordion-list">
 
-<p><strong>Platform:</strong> Openfore</p>
-<p><strong>Operated by:</strong> PickyClicky Inc.</p>
-<p><strong>Address:</strong> 1653 Woodbine Heights Blvd., East York, Ontario, M4B 3A7, Canada</p>
-<p><strong>Contact:</strong> legal@pickyclicky.com</p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">T</div>
+              <div>
+                <div class="doc-title">Terms of Service</div>
+                <p class="doc-subtitle">Rules for using Openfore, liability limits, dispute terms, and platform protections.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                The Terms of Service govern your access to and use of Openfore, including account rules,
+                user responsibilities, restrictions, arbitration, liability limitations, and other core legal terms.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="terms.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">P</div>
+              <div>
+                <div class="doc-title">Privacy Policy</div>
+                <p class="doc-subtitle">How personal information is collected, used, stored, and shared.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                The Privacy Policy explains what personal information Openfore collects, how it is used,
+                how long it is retained, and what privacy rights may apply depending on your location.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="privacy.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Terms of Service</button>
-<div class="panel">
-<p>
-The Terms of Service govern your use of the Openfore platform,
-including user responsibilities, liability limitations,
-and dispute resolution.
-</p>
-<a class="doc-link" href="terms.html">View Terms of Service</a>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">C</div>
+              <div>
+                <div class="doc-title">Community Guidelines</div>
+                <p class="doc-subtitle">Standards for respectful behaviour and safe participation on the platform.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                These guidelines explain the behaviour expected from users on Openfore, including honesty,
+                respect, safety, and prohibited conduct within the community.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="community.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Privacy Policy</button>
-<div class="panel">
-<p>
-The Privacy Policy explains how Openfore collects,
-uses, and protects personal information.
-</p>
-<a class="doc-link" href="privacy.html">View Privacy Policy</a>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">A</div>
+              <div>
+                <div class="doc-title">Acceptable Use Policy</div>
+                <p class="doc-subtitle">Rules against scraping, bots, fraud, abuse, and platform misuse.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                The Acceptable Use Policy sets out prohibited technical and behavioural conduct, including
+                data harvesting, spam, unauthorized automation, and attempts to disrupt the platform.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="acceptable-use.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Community Guidelines</button>
-<div class="panel">
-<p>
-Community Guidelines outline acceptable behavior
-and standards for interacting with other users.
-</p>
-<a class="doc-link" href="community.html">View Community Guidelines</a>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">©</div>
+              <div>
+                <div class="doc-title">Copyright Policy</div>
+                <p class="doc-subtitle">How Openfore handles copyright complaints and infringement notices.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                This policy explains how copyright infringement notices may be submitted, how content may be removed,
+                and how users can respond if they believe content was removed in error.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="copyright.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Acceptable Use Policy</button>
-<div class="panel">
-<p>
-This policy explains prohibited uses of the platform,
-including scraping, spam, and technical abuse.
-</p>
-<a class="doc-link" href="acceptable-use.html">View Acceptable Use Policy</a>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">🍪</div>
+              <div>
+                <div class="doc-title">Cookie Policy</div>
+                <p class="doc-subtitle">Information about cookies, SDKs, analytics tools, and tracking technologies.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                The Cookie Policy explains how Openfore and its service providers may use cookies and similar
+                technologies for essential operations, analytics, personalization, and advertising.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="cookie-policy.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Copyright Policy</button>
-<div class="panel">
-<p>
-Our Copyright Policy explains how we respond to
-copyright infringement claims.
-</p>
-<a class="doc-link" href="copyright.html">View Copyright Policy</a>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <div class="accordion-left">
+              <div class="icon">CA</div>
+              <div>
+                <div class="doc-title">California Privacy Notice</div>
+                <p class="doc-subtitle">Additional privacy disclosures and rights for California residents.</p>
+              </div>
+            </div>
+            <div class="chevron">+</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>
+                This notice supplements the Privacy Policy for California residents and describes rights available
+                under California privacy law, including opt-out and access-related rights where applicable.
+              </p>
+              <div class="actions">
+                <a class="btn btn-primary" href="california-privacy.html">Open document</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<button class="accordion">Cookie Policy</button>
-<div class="panel">
-<p>
-This policy explains how cookies and tracking technologies
-are used within the platform.
-</p>
-<a class="doc-link" href="cookie-policy.html">View Cookie Policy</a>
-</div>
+      </div>
+    </section>
 
-<button class="accordion">California Privacy Notice</button>
-<div class="panel">
-<p>
-California residents have additional privacy rights
-under the CCPA and CPRA.
-</p>
-<a class="doc-link" href="california-privacy.html">View California Privacy Notice</a>
-</div>
+    <p class="footer-note">
+      © 2026 PickyClicky Inc. All rights reserved.
+    </p>
+  </div>
 
-<p class="small">
-© 2026 PickyClicky Inc.
-</p>
+  <script>
+    const items = document.querySelectorAll('.accordion-item');
 
-<script>
+    items.forEach((item) => {
+      const trigger = item.querySelector('.accordion-trigger');
+      const panel = item.querySelector('.accordion-panel');
 
-var acc=document.getElementsByClassName("accordion");
-var i;
+      trigger.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
 
-for(i=0;i<acc.length;i++){
-acc[i].addEventListener("click",function(){
-this.classList.toggle("active");
-var panel=this.nextElementSibling;
-if(panel.style.display==="block"){
-panel.style.display="none";
-}else{
-panel.style.display="block";
-}
-});
-}
+        items.forEach((otherItem) => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.accordion-panel').style.maxHeight = null;
+        });
 
-</script>
-
+        if (!isActive) {
+          item.classList.add('active');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
