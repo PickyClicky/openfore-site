@@ -1,60 +1,41 @@
-I'll implement the full age gate system now. Let me build all the pieces in parallel.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Openfore Support</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-Wrote
-entities/User
-Wrote
-Age Gate Page
-Now update the Layout to enforce the age gate on every protected route:
+<body style="font-family: Arial; max-width:700px; margin:auto; padding:40px; line-height:1.6;">
 
-Edited
-Layout
-Now update the Layout to also hide the nav bar on the AgeGate page and add it to PAGE_TAB_MAP:
+<h1>Openfore Support</h1>
 
-Edited
-Layout
-All done. Here is the complete summary:
+<p>Need help using Openfore?</p>
 
-Files Changed
-File	Change
-entities/User.json	Added dateOfBirth, ageVerified, ageVerifiedAt, isAdultEligible fields
-pages/AgeGate.jsx	New page — the full age verification screen
-Layout.jsx	Added age gate enforcement on every route, AgeGate added to nav-hide list and page map
-Data Fields Added
-Field	Type	Description
-dateOfBirth	string (date)	User's entered DOB
-ageVerified	boolean	true only after passing the gate
-isAdultEligible	boolean	true only if calculated age ≥ 18
-ageVerifiedAt	string (datetime)	Timestamp of gate completion
-Age Calculation Logic
-age = currentYear - dobYear
-if (currentMonth < dobMonth) OR (currentMonth == dobMonth AND currentDay < dobDay):
-    age -= 1
-if age < 18 → blocked
-Route Protection Logic
-In Layout.jsx, after every page navigation:
+<p>If you have questions, encounter a problem, or would like to provide feedback, our team is here to help.</p>
 
-Check if user is authenticated
-If authenticated AND current page is NOT in AGE_GATE_EXEMPT set
-Fetch base44.auth.me() and check u.ageVerified && u.isAdultEligible
-If either is falsy → navigate(AgeGate, { replace: true })
-AGE_GATE_EXEMPT = AgeGate, Landing, PublicProfile, ReferralLanding, PageNotFound, PrivacyPolicy, TermsOfService, InviteLanding, Login, VerifyEmail
+<h2>Contact Support</h2>
 
-Under-18 path: fields are written with ageVerified: false, then auth.logout() fires after 2.5 seconds — the user cannot remain authenticated.
+<p>Email us anytime:</p>
 
-Exact User Flows
-New user: Login/signup → Layout detects no ageVerified → redirect to AgeGate → enter DOB + check box → Continue → DB write → Home
+<p><strong>support@openfore.golf</strong></p>
 
-Existing user (no ageVerified): Login → any page → Layout detects missing ageVerified → redirect to AgeGate → same flow
+<p>We typically respond within 24 hours.</p>
 
-Under-18: Enter DOB → Continue → blocked screen shown → auto logout in 2.5s → redirected to Landing — cannot re-enter
+<h2>Common Questions</h2>
 
-Apple Reviewer Test Steps
-What account state triggers the gate: Any authenticated account where ageVerified is not true OR isAdultEligible is not true. This includes all newly created accounts and all existing accounts that have not yet passed the gate.
+<p><strong>How do I create a tee time?</strong><br>
+Open the app and tap "Create Tee Time" to add your round and invite players.</p>
 
-What the reviewer will see: After signing in, before reaching any app content, they will see a full-screen "Openfore is for Adults" screen with a Date of Birth picker and a confirmation checkbox. The Continue button is disabled until both fields are completed.
+<p><strong>How do I join a round?</strong><br>
+Browse available rounds in the "Find a Round" section and tap "Join".</p>
 
-If DOB entered is under 18: An "Age Requirement Not Met" message is shown: "Sorry, Openfore is only available to users 18 and older." with a single Exit button. The user is automatically signed out within 2.5 seconds and cannot access the app.
+<p><strong>Is Openfore free?</strong><br>
+Yes. Openfore is free to download and use.</p>
 
-If DOB entered is 18 or older: The verification data (ageVerified: true, isAdultEligible: true, ageVerifiedAt, dateOfBirth) is written to the user's record in the database. The user is then navigated to the Home screen. On all subsequent logins, the gate is skipped automatically because ageVerified is already true.
+<hr>
 
-Note on Terms of Service: Your Terms page loads from https://openfore.golf/terms.html — please add a clause there explicitly stating users must be 18 or older. No in-app text needed to change beyond what is now on the AgeGate screen itself.
+<p>Openfore — Fill Your Foursome. Find a Round.</p>
+
+</body>
+</html>
