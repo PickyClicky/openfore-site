@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Openfore — Fill Your Foursome. Find a Round. Fast.</title>
+  <title>Openfore — Fill your foursome. Find a round. Fast.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta
@@ -25,7 +25,7 @@
 
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="Openfore" />
-  <meta property="og:title" content="Openfore — Fill Your Foursome. Find a Round. Fast." />
+  <meta property="og:title" content="Openfore — Fill your foursome. Find a round. Fast." />
   <meta property="og:description" content="Openfore helps golfers fill open spots, find rounds fast, and play with golfers they actually want to play with." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://openfore.golf/" />
@@ -37,7 +37,7 @@
   <meta property="og:image:alt" content="Openfore golf app preview" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Openfore — Fill Your Foursome. Find a Round. Fast." />
+  <meta name="twitter:title" content="Openfore — Fill your foursome. Find a round. Fast." />
   <meta name="twitter:description" content="Openfore helps golfers fill open spots, find rounds fast, and play with golfers they actually want to play with." />
   <meta name="twitter:image" content="https://openfore.golf/openfore-preview.jpg" />
   <meta name="twitter:image:alt" content="Openfore golf app preview" />
@@ -71,7 +71,7 @@
         "@type": "WebPage",
         "@id": "https://openfore.golf/#webpage",
         "url": "https://openfore.golf/",
-        "name": "Openfore — Fill Your Foursome. Find a Round. Fast.",
+        "name": "Openfore — Fill your foursome. Find a round. Fast.",
         "description": "Openfore helps golfers fill open spots, find rounds fast, and play with golfers they actually want to play with.",
         "isPartOf": {
           "@id": "https://openfore.golf/#website"
@@ -97,7 +97,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-RCYCFHZE30');
   </script>
 
@@ -143,6 +142,10 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+    }
+
     .container {
       width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
@@ -169,7 +172,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding:4px 0;
+      padding: 4px 0;
       font-weight: 700;
       letter-spacing: 0.01em;
     }
@@ -208,10 +211,12 @@
       transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
       cursor: pointer;
       border: 1px solid transparent;
+      text-align: center;
     }
 
     .cta-btn:hover,
-    .cta-btn-secondary:hover {
+    .cta-btn-secondary:hover,
+    .store-badge:hover {
       transform: translateY(-1px);
     }
 
@@ -225,6 +230,22 @@
       background: rgba(255,255,255,0.04);
       color: var(--text);
       border-color: rgba(255,255,255,0.10);
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .store-badge img {
+      display: block;
+      height: 52px;
+      width: auto;
+    }
+
+    .store-badge--nav img {
+      height: 44px;
     }
 
     .hero {
@@ -274,6 +295,7 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 14px;
       margin-top: 28px;
     }
@@ -521,12 +543,15 @@
     .big-card h3 {
       margin: 0 0 12px;
       font-size: 28px;
+      line-height: 1.15;
+      white-space: pre-line;
     }
 
     .big-card p {
       margin: 0;
       color: var(--muted);
       font-size: 16px;
+      white-space: pre-line;
     }
 
     .final-cta {
@@ -556,30 +581,30 @@
       font-size: 18px;
     }
 
-    .footer{
-border-top:1px solid rgba(255,255,255,0.06);
-padding:28px 0;
-color:#94a39a;
-font-size:14px;
-}
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 0;
+      color: #94a39a;
+      font-size: 14px;
+    }
 
-.footer-inner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:16px;
-}
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
-.footer a{
-color:#b8c2bc;
-text-decoration:none;
-margin-left:18px;
-}
+    .footer a {
+      color: #b8c2bc;
+      text-decoration: none;
+      margin-left: 18px;
+    }
 
-.footer a:hover{
-color:white;
-}
+    .footer a:hover {
+      color: white;
+    }
 
     @media (max-width: 980px) {
       .hero-grid,
@@ -618,8 +643,18 @@ color:white;
         width: 100%;
       }
 
+      .store-badge {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .store-badge img {
+        height: 50px;
+      }
+
       .hero-actions {
         flex-direction: column;
+        align-items: stretch;
       }
     }
   </style>
@@ -636,7 +671,15 @@ color:white;
         <a href="#how">How it works</a>
         <a href="#screens">Screens</a>
         <a href="#why">Why Openfore</a>
-        <a href="https://app.openfore.golf" class="cta-btn">Open App</a>
+        <a
+          href="https://apps.apple.com/ca/app/id6760089051"
+          class="store-badge store-badge--nav"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download Openfore on the App Store"
+        >
+          <img src="images/download-on-the-app-store.svg" alt="Download on the App Store" />
+        </a>
       </div>
     </div>
   </nav>
@@ -656,7 +699,16 @@ color:white;
           </p>
 
           <div class="hero-actions">
-            <a href="https://app.openfore.golf" class="cta-btn">Open the App</a>
+            <a
+              href="https://apps.apple.com/ca/app/id6760089051"
+              class="store-badge"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download Openfore on the App Store"
+            >
+              <img src="images/download-on-the-app-store.svg" alt="Download on the App Store" />
+            </a>
+            <a href="https://app.openfore.golf" class="cta-btn-secondary" target="_blank" rel="noopener noreferrer">Open Web App</a>
             <a href="#screens" class="cta-btn-secondary">See how it works</a>
           </div>
 
@@ -779,13 +831,11 @@ color:white;
         <div class="big-card">
           <h3>Finding a tee time is easy.
 Finding the right round is special.</h3>
-          <p>
-            Most apps help you book a tee time.
+          <p>Most apps help you book a tee time.
 
 Openfore helps you find the right round.
 
-See who you're playing with, fill open spots fast, and build a network of golfers you actually want to play with.
-          </p>
+See who you're playing with, fill open spots fast, and build a network of golfers you actually want to play with.</p>
         </div>
 
         <div class="big-card">
@@ -806,8 +856,16 @@ See who you're playing with, fill open spots fast, and build a network of golfer
           </p>
 
           <div class="hero-actions" style="justify-content:center; margin-top: 24px;">
-            <a href="https://app.openfore.golf" class="cta-btn">Open the App</a>
-            <a href="#" class="cta-btn-secondary">App Store Coming Soon</a>
+            <a
+              href="https://apps.apple.com/ca/app/id6760089051"
+              class="store-badge"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download Openfore on the App Store"
+            >
+              <img src="images/download-on-the-app-store.svg" alt="Download on the App Store" />
+            </a>
+            <a href="https://app.openfore.golf" class="cta-btn-secondary" target="_blank" rel="noopener noreferrer">Open Web App</a>
           </div>
         </div>
       </div>
