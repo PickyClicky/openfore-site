@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Openfore — Fill your foursome. Find a round. Fast.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta name="description" content="Openfore helps golfers fill open spots, find rounds fast, and play with golfers they actually want to play with." />
+  <meta name="keywords" content="Openfore, golf app, golf tee times, fill a foursome, find golfers, golf groups, join a round, public golf, golf planning" />
+  <meta name="author" content="Openfore" />
+  <meta name="theme-color" content="#080a09" />
+  <meta name="color-scheme" content="dark" />
+
+  <link rel="canonical" href="https://openfore.golf/" />
+
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:site_name" content="Openfore" />
+  <meta property="og:title" content="Openfore — Fill your foursome. Find a round. Fast." />
+  <meta property="og:description" content="Openfore helps golfers fill open spots, find rounds fast, and play with golfers they actually want to play with." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://openfore.golf/" />
+  <meta property="og:image" content="https://openfore.golf/openfore-preview.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://openfore.golf/#organization",
+        "name": "Openfore",
+        "url": "https://openfore.golf/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://openfore.golf/images/Openfore-Logo-white-300px.png"
+        },
+        "email": "info@openfore.golf"
+      }
+    ]
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCYCFHZE30"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RCYCFHZE30');
+  </script>
+
+  <style>
+    :root {
+      --bg: #080a09;
+      --surface: #121614;
+      --accent: #2ecc71;
+      --accent-glow: rgba(46, 204, 113, 0.35);
+      --text-main: #ffffff;
+      --text-muted: #94a39a;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --font-main: 'Inter', -apple-system, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 0% 0%, var(--accent-glow) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, #1a2e23 0%, transparent 40%);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    /* --- NAVIGATION --- */
+    .nav {
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 10, 9, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand img { height: 40px; transition: transform 0.3s ease; }
+    .brand:hover img { transform: scale(1.05); }
+
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* --- HERO --- */
+    .hero {
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 84px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #fff 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: var(--text-muted);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    /* --- APP PREVIEW CARD --- */
+    .hero-visual {
+      max-width: 500px;
+      margin: 60px auto 0;
+      perspective: 1000px;
+    }
+
+    .app-card {
+      background: #111;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 40px var(--accent-glow);
+      transform: rotateX(5deg);
+      transition: 0.5s ease;
+    }
+
+    .app-card:hover { transform: rotateX(0deg) translateY(-10px); }
+
+    .mock-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .mock-pill { background: rgba(46, 204, 113, 0.2); color: var(--accent); padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; }
+    
+    .mock-avatars { display: flex; margin-bottom: 20px; }
+    .mock-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #111; margin-left: -10px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .mock-avatar:first-child { margin-left: 0; }
+
+    /* --- BENTO SECTION --- */
+    .section-title { margin-bottom: 50px; }
+    .section-title h2 { font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.03em; }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .bento-card:hover { border-color: var(--accent); background: #161c19; }
+    .bento-card .icon { font-size: 32px; margin-bottom: 20px; color: var(--accent); }
+    .bento-card h3 { font-size: 24px; margin-bottom: 12px; }
+    .bento-card p { color: var(--text-muted); font-size: 15px; }
+
+    /* --- SCREEN SHOWCASE --- */
+    .screenshot-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .shot-container {
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      padding: 15px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .shot-container img {
+      width: 100%;
+      border-radius: 20px;
+      filter: grayscale(20%);
+      transition: 0.5s;
+    }
+
+    .shot-container:hover img { filter: grayscale(0%); transform: scale(1.02); }
+
+    /* --- FOOTER --- */
+    .footer {
+      padding: 100px 0 150px;
+      border-top: 1px solid var(--glass-border);
+      margin-top: 100px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .footer a { color: var(--text-main); margin-left: 20px; }
+
+    /* --- MOBILE DOCK (The 2026 Secret Sauce) --- */
+    .mobile-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(400px, 92%);
+      height: 72px;
+      background: rgba(20, 25, 22, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      display: none;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 10px;
+      z-index: 1000;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .dock-btn {
+      flex: 1;
+      height: 52px;
+      margin: 0 5px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .dock-primary { background: var(--accent); color: #000; }
+    .dock-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--glass-border); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .bento-grid, .screenshot-row { grid-template-columns: 1fr; }
+      .mobile-dock { display: flex; }
+      .hero { padding-top: 60px; }
+      .hero-visual { margin-top: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-dock">
+    <a href="https://app.openfore.golf" class="dock-btn dock-secondary">Web App</a>
+    <a href="https://apps.apple.com/ca/app/id6760089051" class="dock-btn dock-primary">Download App</a>
+  </div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <img src="images/Openfore-Logo-white-300px.png" alt="Openfore" />
+      </a>
+      <div class="nav-links">
+        <a href="#how">Features</a>
+        <a href="#screens">Preview</a>
+        <a href="https://app.openfore.golf">Web App</a>
+        <a href="https://apps.apple.com/ca/app/id6760089051" style="background: var(--accent); color:#000; padding: 10px 20px; border-radius: 50px; font-weight:700;">Get Openfore</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">The Modern Golf Network</span>
+        <h1>Fill your foursome.<br><span>Find a round. Fast.</span></h1>
+        <p>Openfore helps golfers find the best round fast—whether you need players, need a game, or want to plan one with the right group.</p>
+        
+        <div class="hero-visual">
+          <div class="app-card">
+            <div class="mock-header">
+              <div>
+                <div style="font-weight: 800; font-size: 18px;">Angus Glen South</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Tomorrow • 8:20 AM</div>
+              </div>
+              <div class="mock-pill">2 spots left</div>
+            </div>
+            <div class="mock-avatars">
+              <div class="mock-avatar">JC</div>
+              <div class="mock-avatar">MT</div>
+              <div class="mock-avatar">AR</div>
+              <div style="margin-left: 15px; font-size: 12px; color: var(--text-muted); padding-top: 8px;">3 joined</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div style="background: var(--glass); padding: 10px; border-radius: 12px; font-size: 12px;">
+                <div style="color: var(--text-muted);">Mode</div>
+                <div style="font-weight: 700;">Find a Round</div>
+              </div>
+              <div style="background: var(--glass); padding: 10px; border-radius: 12px; font-size: 12px;">
+                <div style="color: var(--text-muted);">Vibe</div>
+                <div style="font-weight: 700;">Social</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="container" style="padding: 100px 0;">
+      <div class="section-title">
+        <h2>Built for the way<br>golfers actually play.</h2>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-card">
+          <div class="icon">⛳️</div>
+          <h3>Find a Round</h3>
+          <p>Browse nearby public tee times, filter by distance, and join the best round in seconds.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon">🤝</div>
+          <h3>Need Players</h3>
+          <p>Post your tee time and attract the right golfers instead of chasing friends in group chats.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon">📅</div>
+          <h3>Plan a Round</h3>
+          <p>Start a session when you know you want to play, but haven't picked the where or when yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens" class="container" style="padding: 60px 0;">
+      <div class="section-title" style="text-align: center;">
+        <h2>Effortless Interface.</h2>
+        <p style="margin: 0 auto; max-width: 600px;">The product is designed to feel fast and exclusive—like the golf network you actually want to be part of.</p>
+      </div>
+      <div class="screenshot-row">
+        <div class="shot-container"><img src="images/screenshot1.png" alt="Feed"></div>
+        <div class="shot-container"><img src="images/screenshot2.png" alt="Detail"></div>
+        <div class="shot-container"><img src="images/screenshot3.png" alt="Invite"></div>
+      </div>
+    </section>
+
+    <section id="why" class="container" style="padding: 100px 0;">
+        <div class="bento-grid">
+            <div class="bento-card" style="grid-column: span 2; background: linear-gradient(to bottom right, #121614, #1a2e23);">
+                <h3 style="font-size: 32px;">Better golf starts with better people.</h3>
+                <p>Most apps help you book a tee time. Openfore helps you find the right round. See who you're playing with and build a network you actually enjoy.</p>
+            </div>
+            <div class="bento-card">
+                <h3>Vibe Check</h3>
+                <p>Filter by social, competitive, or modern vibes to find your perfect match.</p>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Openfore</div>
+      <div>
+        <a href="mailto:info@openfore.golf">Contact</a>
+        <a href="/support.html">Support</a>
+        <a href="/legal.html">Legal</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
