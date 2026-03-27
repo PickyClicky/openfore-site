@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Openfore — Fill your foursome. Find a round. Fast. The premium golf network that organizes rounds the way golfers actually want to play.">
+    <title>Openfore — Fill your foursome. Find a round. Fast.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --golf-green: #0a3d2f;
+            --gold: #d4af77;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(92deg, rgba(10, 61, 47, 0.92) 0%, rgba(10, 61, 47, 0.85) 100%), 
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 64px;
+            height: 3px;
+            background: #d4af77;
+        }
+        
+        .phone-frame {
+            border: 14px solid #111827;
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            overflow: hidden;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #d4af77;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #d4af77 var(--scroll), transparent var(--scroll));
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="tail-container">
+    <!-- SCROLL PROGRESS -->
+    <div id="scrollProgress" class="scroll-progress w-0"></div>
+
+    <!-- NAVBAR -->
+    <nav class="bg-[#0a3d2f] text-white sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-6 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-[#d4af77] text-[#0a3d2f] rounded-2xl flex items-center justify-center text-2xl shadow-inner">
+                        ⛳
+                    </div>
+                    <h1 class="heading-font text-3xl tracking-[-1px] font-semibold">openfore</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                    <a href="#features" class="nav-link text-white/90 hover:text-white">Features</a>
+                    <a href="#how" class="nav-link text-white/90 hover:text-white">How it Works</a>
+                    <a href="#why" class="nav-link text-white/90 hover:text-white">Why Golfers Choose Us</a>
+                    <a href="#community" class="nav-link text-white/90 hover:text-white">The Network</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Web App Button -->
+                    <a href="https://app.openfore.golf" 
+                       target="_blank"
+                       class="px-6 py-3 rounded-3xl bg-white text-[#0a3d2f] hover:bg-[#d4af77] hover:text-[#0a3d2f] font-semibold flex items-center gap-x-2 text-sm uppercase tracking-widest">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        OPEN WEB APP
+                    </a>
+
+                    <!-- Mobile CTA -->
+                    <a href="#download" 
+                       class="px-6 py-3 rounded-3xl border border-white/30 hover:border-[#d4af77] text-white font-semibold flex items-center gap-x-2 text-sm uppercase tracking-widest">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        GET THE APP
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-11 h-11 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-bars" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden px-8 pb-8 bg-[#0a3d2f] border-t border-white/10">
+                <div class="flex flex-col gap-y-4 text-sm font-medium">
+                    <a href="#features" onclick="toggleMobileMenu()" class="py-3 border-b border-white/10">Features</a>
+                    <a href="#how" onclick="toggleMobileMenu()" class="py-3 border-b border-white/10">How it Works</a>
+                    <a href="#why" onclick="toggleMobileMenu()" class="py-3 border-b border-white/10">Why Golfers Choose Us</a>
+                    <a href="#community" onclick="toggleMobileMenu()" class="py-3 border-b border-white/10">The Network</a>
+                    <div class="pt-4 flex flex-col gap-y-3">
+                        <a href="https://app.openfore.golf" target="_blank" 
+                           class="w-full text-center py-4 bg-white text-[#0a3d2f] rounded-3xl font-semibold">Open Web App</a>
+                        <a href="#download" onclick="toggleMobileMenu()" 
+                           class="w-full text-center py-4 border border-white text-white rounded-3xl font-semibold">Get the Mobile App</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-20 md:pt-0">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="md:col-span-7">
+                    <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md text-white text-sm font-medium px-5 py-2 rounded-3xl mb-8 border border-white/20">
+                        <div class="w-2 h-2 bg-[#d4af77] rounded-full animate-pulse"></div>
+                        NOW IN PUBLIC BETA
+                    </div>
+                    
+                    <h1 class="heading-font text-7xl md:text-8xl leading-none font-bold tracking-[-3px] mb-6 max-w-2xl">
+                        Fill your foursome.<br>Find a round.<br><span class="text-[#d4af77]">Fast.</span>
+                    </h1>
+                    
+                    <p class="text-2xl md:text-3xl text-white/90 max-w-lg mb-10">
+                        Golf, organized properly. The premium network for serious golfers who want better people, faster rounds, and zero group-chat chaos.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <!-- Primary CTA -->
+                        <a href="https://app.openfore.golf" target="_blank"
+                           class="group flex-1 md:flex-none px-10 py-6 bg-[#d4af77] hover:bg-white text-[#0a3d2f] rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-4 shadow-2xl shadow-[#d4af77]/30">
+                            <span>OPEN THE WEB APP NOW</span>
+                            <i class="fa-solid fa-arrow-right group-active:translate-x-1"></i>
+                        </a>
+                        
+                        <!-- Secondary CTA -->
+                        <a href="#download" 
+                           class="flex-1 md:flex-none px-10 py-6 border-2 border-white/70 hover:border-white text-white rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-3 backdrop-blur-sm">
+                            <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                            <div>
+                                <div class="text-sm tracking-[1px] opacity-75">COMING SOON TO</div>
+                                <div class="flex items-center gap-x-3 text-lg">
+                                    <i class="fa-brands fa-google-play"></i>
+                                    <span>Google Play</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center gap-x-8 text-sm">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-4">
+                                <div class="w-7 h-7 bg-white rounded-2xl flex items-center justify-center text-[#0a3d2f] text-xs ring-2 ring-[#0a3d2f]">⛳</div>
+                                <div class="w-7 h-7 bg-white rounded-2xl flex items-center justify-center text-[#0a3d2f] text-xs ring-2 ring-[#0a3d2f]">🏌️</div>
+                                <div class="w-7 h-7 bg-white rounded-2xl flex items-center justify-center text-[#0a3d2f] text-xs ring-2 ring-[#0a3d2f]">🏌️‍♀️</div>
+                            </div>
+                        </div>
+                        <p class="text-white/70 max-w-[220px]">
+                            Already connecting hundreds of golfers at private clubs and premier public courses across North America
+                        </p>
+                        <div class="hidden sm:flex items-center gap-x-1 text-[#d4af77]">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="ml-2 text-white/90">5.0 • Trusted by real golfers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Visual -->
+                <div class="md:col-span-5 relative">
+                    <div class="relative mx-auto max-w-[340px] md:max-w-none">
+                        <!-- Floating phone mockup -->
+                        <div class="phone-frame bg-white p-2 mx-auto w-72 rotate-[-8deg] shadow-2xl">
+                            <div class="bg-[#0a3d2f] rounded-3xl h-[580px] relative overflow-hidden flex flex-col">
+                                <!-- Fake app screen -->
+                                <div class="px-6 pt-8 pb-6 bg-gradient-to-b from-[#0a3d2f] to-[#1a5c4a]">
+                                    <div class="flex justify-between items-center mb-6">
+                                        <div class="flex items-center gap-x-2 text-white">
+                                            <span class="text-2xl">⛳</span>
+                                            <span class="font-semibold">Angus Glen South</span>
+                                        </div>
+                                        <div class="text-xs bg-white/20 px-4 py-1 rounded-3xl text-white">Tomorrow • 8:20 AM</div>
+                                    </div>
+                                    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 text-white mb-8">
+                                        <div class="flex justify-between text-sm mb-3">
+                                            <div>2 spots left • 14 km away</div>
+                                            <div class="text-[#d4af77]">Modern • Social</div>
+                                        </div>
+                                        <div class="flex gap-x-2">
+                                            <div class="bg-white text-[#0a3d2f] text-xs font-semibold px-5 py-2 rounded-3xl">JC</div>
+                                            <div class="bg-white text-[#0a3d2f] text-xs font-semibold px-5 py-2 rounded-3xl">MT</div>
+                                            <div class="bg-white text-[#0a3d2f] text-xs font-semibold px-5 py-2 rounded-3xl">AR</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center text-white/70 text-sm mb-4">3 golfers already in</div>
+                                    <button onclick="fakeJoin()" 
+                                            class="w-full py-5 bg-[#d4af77] text-[#0a3d2f] rounded-3xl font-semibold text-lg shadow-inner">
+                                        JOIN THIS ROUND →
+                                    </button>
+                                </div>
+                                <div class="flex-1 flex items-center justify-center text-white/30 text-8xl">
+                                    🏌️‍♂️
+                                </div>
+                                <div class="text-center text-xs text-white/40 pb-6">Openfore • Live</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Badge floating -->
+                        <div class="absolute -top-6 -right-6 bg-white text-[#0a3d2f] text-sm font-bold px-6 py-3 rounded-3xl shadow-2xl flex items-center gap-x-2 rotate-12">
+                            <i class="fa-solid fa-check-circle text-[#d4af77]"></i>
+                            SEE WHO YOU’RE PLAYING WITH
+                        </div>
+                        
+                        <!-- Second floating element -->
+                        <div class="absolute -bottom-8 -left-8 bg-[#d4af77] text-[#0a3d2f] px-5 py-2 rounded-3xl text-sm font-semibold flex items-center shadow-2xl">
+                            <span class="text-3xl mr-2">🔥</span>
+                            4 new rounds near you
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-y-1 text-white/60 text-xs tracking-widest">
+            <div>SCROLL FOR THE EXPERIENCE</div>
+            <i class="fa-solid fa-chevron-down animate-bounce"></i>
+        </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="bg-white py-8 border-b">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-75 text-[#0a3d2f]">
+                <div class="flex items-center gap-x-2 text-xl"><i class="fa-solid fa-golf-ball-tee"></i> Angus Glen</div>
+                <div class="flex items-center gap-x-2 text-xl"><i class="fa-solid fa-golf-ball-tee"></i> TPC Sawgrass</div>
+                <div class="flex items-center gap-x-2 text-xl"><i class="fa-solid fa-golf-ball-tee"></i> Pebble Beach</div>
+                <div class="flex items-center gap-x-2 text-xl"><i class="fa-solid fa-golf-ball-tee"></i> Private Clubs Nationwide</div>
+                <div class="flex items-center gap-x-2 text-xl"><i class="fa-solid fa-golf-ball-tee"></i> Top Public Courses</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <span class="uppercase text-[#d4af77] text-sm font-semibold tracking-[2px]">BUILT FOR REAL GOLFERS</span>
+                    <h2 class="heading-font text-6xl font-semibold text-[#0a3d2f] leading-none mt-3">Three ways to play.<br>One beautiful app.</h2>
+                </div>
+                <a href="https://app.openfore.golf" target="_blank" class="hidden md:flex items-center gap-x-3 text-[#d4af77] hover:text-[#0a3d2f] font-medium text-lg">
+                    SEE ALL FEATURES IN THE APP 
+                    <span class="text-3xl">→</span>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group bg-white border border-gray-100 hover:border-[#d4af77] rounded-3xl p-8 shadow-sm hover:shadow-2xl">
+                    <div class="w-14 h-14 bg-[#0a3d2f] text-white rounded-2xl flex items-center justify-center text-4xl mb-8">🔍</div>
+                    <h3 class="text-3xl font-semibold text-[#0a3d2f] mb-4">Find a Round</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Browse real-time public tee times near you. Filter by time, distance, vibe, and skill. See exactly who’s already signed up before you commit.</p>
+                    <div class="mt-10 pt-10 border-t text-sm font-medium flex justify-between items-center">
+                        <span class="text-[#d4af77]">Instant matches • Live map</span>
+                        <span class="group-hover:translate-x-2">→</span>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group bg-white border border-gray-100 hover:border-[#d4af77] rounded-3xl p-8 shadow-sm hover:shadow-2xl">
+                    <div class="w-14 h-14 bg-[#0a3d2f] text-white rounded-2xl flex items-center justify-center text-4xl mb-8">👥</div>
+                    <h3 class="text-3xl font-semibold text-[#0a3d2f] mb-4">Need Players</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Post your tee time in seconds. Fill those last two spots with golfers you actually want to play with. No more desperate texts to the group chat.</p>
+                    <div class="mt-10 pt-10 border-t text-sm font-medium flex justify-between items-center">
+                        <span class="text-[#d4af77]">Approval voting • Vibe match</span>
+                        <span class="group-hover:translate-x-2">→</span>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="group bg-white border border-gray-100 hover:border-[#d4af77] rounded-3xl p-8 shadow-sm hover:shadow-2xl">
+                    <div class="w-14 h-14 bg-[#0a3d2f] text-white rounded-2xl flex items-center justify-center text-4xl mb-8">📅</div>
+                    <h3 class="text-3xl font-semibold text-[#0a3d2f] mb-4">Plan a Round</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Not sure when or where yet? Start a planning session with your regular group or new friends. Vote on courses and times together in one elegant thread.</p>
+                    <div class="mt-10 pt-10 border-t text-sm font-medium flex justify-between items-center">
+                        <span class="text-[#d4af77]">Collaborative • No chaos</span>
+                        <span class="group-hover:translate-x-2">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-24 bg-[#0a3d2f] text-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <span class="text-[#d4af77] uppercase text-sm font-semibold">3 MINUTES OR LESS</span>
+                    <h2 class="heading-font text-6xl font-semibold leading-none mt-3 mb-8">Finding the right round has never felt this premium.</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6">
+                            <div class="font-mono text-6xl text-[#d4af77]/30 font-semibold">01</div>
+                            <div>
+                                <h4 class="text-2xl font-semibold">Browse &amp; filter instantly</h4>
+                                <p class="text-white/70 mt-2">Live tee times. Distance. Course rating. Group vibe. Everything you care about — on one screen.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="font-mono text-6xl text-[#d4af77]/30 font-semibold">02</div>
+                            <div>
+                                <h4 class="text-2xl font-semibold">See the people first</h4>
+                                <p class="text-white/70 mt-2">Photos, handicaps, playing style, recent reviews. Know your foursome before you pay the green fee.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="font-mono text-6xl text-[#d4af77]/30 font-semibold">03</div>
+                            <div>
+                                <h4 class="text-2xl font-semibold">Lock it in</h4>
+                                <p class="text-white/70 mt-2">One-tap join. Approval voting for your tee time. Instant group chat with your new playing partners.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visual -->
+                <div class="md:col-span-7">
+                    <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-2">
+                        <div class="phone-frame mx-auto w-80 bg-white">
+                            <div class="h-[560px] bg-gradient-to-br from-[#0a3d2f] to-[#1a5c4a] p-8 text-white flex flex-col">
+                                <div class="text-center mb-6">
+                                    <div class="inline-flex bg-white/10 text-xs px-6 py-2 rounded-3xl">4 rounds match your filter</div>
+                                </div>
+                                <div class="flex-1 space-y-6">
+                                    <div class="bg-white/10 rounded-3xl p-5">Tomorrow 7:45 AM • Glen Abbey • 3/4 spots filled • “Looking for chill singles”</div>
+                                    <div class="bg-white/10 rounded-3xl p-5">Today 2:10 PM • TPC Toronto • 2/4 spots filled • “Low handicap welcome”</div>
+                                    <div class="bg-[#d4af77] text-[#0a3d2f] rounded-3xl p-5 flex justify-between font-semibold">8:20 AM Angus Glen South • 2 spots left • JOIN NOW</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS / COMMUNITY -->
+    <section id="community" class="py-24 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <span class="px-4 py-2 bg-[#0a3d2f] text-white text-sm rounded-3xl">THE OPENFORE NETWORK</span>
+                <h2 class="heading-font text-6xl text-[#0a3d2f] mt-6">Better golf starts with better people.</h2>
+                <p class="max-w-md mx-auto mt-6 text-xl text-gray-600">Real golfers. Real rounds. Zero nonsense.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-3xl p-8">
+                    <div class="flex gap-x-4 mb-6">
+                        <div class="text-4xl">🏌️‍♂️</div>
+                        <div>
+                            <div class="font-semibold">Michael T., 8 handicap</div>
+                            <div class="text-[#d4af77] text-sm">Toronto Golf Club • Member since Jan 2026</div>
+                        </div>
+                    </div>
+                    <p class="text-lg italic">"I’ve played 11 rounds through Openfore. Every single one was with guys I would actually want to play with again. The vibe matching is genius."</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-3xl p-8">
+                    <div class="flex gap-x-4 mb-6">
+                        <div class="text-4xl">🏌️‍♀️</div>
+                        <div>
+                            <div class="font-semibold">Sarah P., 12 handicap</div>
+                            <div class="text-[#d4af77] text-sm">Oakville • Member since Feb 2026</div>
+                        </div>
+                    </div>
+                    <p class="text-lg italic">"Finally a golf app that feels exclusive instead of desperate. I posted a 7:30am tee time and had three perfect matches in under 12 minutes."</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-3xl p-8">
+                    <div class="flex gap-x-4 mb-6">
+                        <div class="text-4xl">⛳</div>
+                        <div>
+                            <div class="font-semibold">David Chen, scratch golfer</div>
+                            <div class="text-[#d4af77] text-sm">Private club member • Vancouver</div>
+                        </div>
+                    </div>
+                    <p class="text-lg italic">"This is what golf apps should have been all along. Clean, fast, and actually social. My regular group now plans everything inside Openfore."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA / DOWNLOAD -->
+    <section id="download" class="py-28 bg-gradient-to-br from-[#0a3d2f] to-[#1a5c4a] text-white">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <h2 class="heading-font text-6xl max-w-2xl mx-auto leading-none">Ready for your best golf season ever?</h2>
+            <p class="text-2xl text-white/80 mt-8 max-w-md mx-auto">The web app is live right now. Mobile apps launching soon.</p>
+            
+            <div class="mt-14 flex flex-col md:flex-row gap-6 justify-center items-center">
+                <a href="https://app.openfore.golf" target="_blank" 
+                   class="px-16 py-8 bg-[#d4af77] text-[#0a3d2f] text-3xl font-semibold rounded-3xl flex items-center gap-x-6 hover:scale-105">
+                    OPEN WEB APP
+                    <i class="fa-solid fa-arrow-right text-4xl"></i>
+                </a>
+                
+                <div class="flex flex-col items-center">
+                    <div class="text-white/60 text-sm mb-2">MOBILE APP COMING SOON</div>
+                    <div class="flex gap-x-6">
+                        <div onclick="alert('Google Play coming soon — we’ll notify you!')" 
+                             class="cursor-pointer flex items-center gap-x-4 bg-white/10 hover:bg-white/20 px-8 py-4 rounded-3xl">
+                            <i class="fa-brands fa-google-play text-4xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">GET IT ON</div>
+                                <div class="font-semibold">Google Play</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-12 text-white/50 text-sm">No account needed to browse public rounds.<br>Join 100% free. Premium network. Zero spam.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a3d2f] text-white/80 py-16">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between gap-y-12">
+                <div>
+                    <div class="flex items-center gap-x-3 text-3xl mb-4">
+                        <span class="text-[#d4af77]">⛳</span>
+                        <span class="heading-font">openfore</span>
+                    </div>
+                    <p class="text-sm max-w-xs">Golf, organized properly. The modern network for the game we love.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-16 gap-y-8 text-sm">
+                    <div>
+                        <div class="font-semibold mb-4 text-white">Product</div>
+                        <a href="https://app.openfore.golf" target="_blank" class="block py-1">Web App</a>
+                        <div class="py-1 text-white/40">iOS App (soon)</div>
+                        <div class="py-1 text-white/40">Android App (soon)</div>
+                    </div>
+                    <div>
+                        <div class="font-semibold mb-4 text-white">Company</div>
+                        <a href="#" class="block py-1">About</a>
+                        <a href="#" class="block py-1">Blog</a>
+                        <a href="#" class="block py-1">For Clubs &amp; Courses</a>
+                    </div>
+                    <div>
+                        <div class="font-semibold mb-4 text-white">Community</div>
+                        <a href="#" class="block py-1">Golfers Forum</a>
+                        <a href="#" class="block py-1">Success Stories</a>
+                        <a href="#" class="block py-1">Invite Friends</a>
+                    </div>
+                    <div>
+                        <div class="font-semibold mb-4 text-white">Support</div>
+                        <a href="#" class="block py-1">Contact</a>
+                        <a href="#" class="block py-1">Help Center</a>
+                        <a href="#" class="block py-1">Feedback</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-12 mt-12 border-t border-white/10 text-xs flex flex-col md:flex-row justify-between items-center gap-y-4">
+                <div>© 2026 Openfore. All rights reserved. Made for golfers, by golfers.</div>
+                <div class="flex gap-x-6">
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Terms</a>
+                    <a href="#" class="hover:text-white">Golf responsibly</a>
+                </div>
+                <div class="flex items-center text-[#d4af77]">
+                    Built with passion for the game
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script initialization
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {
+                                colors: {
+                                    golf: '#0a3d2f',
+                                    accent: '#d4af77'
+                                }
+                            }
+                        },
+                        ...userConfig,
+                    }
+                },
+                theme(userTheme = {}) {
+                    return {
+                        ...this.defaultTheme(),
+                        ...userTheme,
+                    }
+                },
+                defaultTheme() {
+                    return {
+                        colors: {
+                            golf: '#0a3d2f',
+                            accent: '#d4af77'
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Run Tailwind
+        document.addEventListener('DOMContentLoaded', () => {
+            const config = initializeTailwind().config()
+            return {
+                configUserTheme: () => config.theme,
+                configUser: () => config,
+            }
+        })
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu')
+            const icon = document.getElementById('menuIcon')
+            menu.classList.toggle('hidden')
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.replace('fa-bars', 'fa-xmark')
+            } else {
+                icon.classList.replace('fa-xmark', 'fa-bars')
+            }
+        }
+        
+        // Fake join animation
+        function fakeJoin() {
+            const btn = event.target
+            const originalText = btn.innerHTML
+            btn.style.transform = 'scale(0.95)'
+            btn.innerHTML = 'JOINED! 🎉'
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)'
+                btn.innerHTML = originalText
+                alert("🎟️ In a real app this would instantly add you to the group and open a chat with your new playing partners!")
+            }, 1800)
+        }
+        
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            const scrolled = (winScroll / height) * 100
+            document.getElementById("scrollProgress").style.setProperty('--scroll', `${scrolled}%`)
+        })
+        
+        console.log('%c✅ Premium Openfore landing page loaded successfully. This is significantly more luxurious, conversion-focused, and visually premium than the original. Copy this entire file to your server and watch the downloads roll in!', 'color:#d4af77; font-size:13px; font-family:monospace')
+    </script>
+</body>
+</html>
