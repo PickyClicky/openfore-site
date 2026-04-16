@@ -264,27 +264,20 @@
       height: 44px;
     }
 
-    .store-placeholder {
-      min-width: 180px;
+    .store-badge--google img {
       height: 52px;
-      padding: 0 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: var(--white);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0.01em;
-      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      width: auto;
     }
 
-    .store-placeholder-note {
-      font-size: 12px;
-      color: var(--muted);
-      padding-left: 4px;
+    .cta-btn-tertiary {
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.55;
+      padding: 10px 16px;
+    }
+
+    .cta-btn-tertiary:hover {
+      opacity: 0.85;
     }
 
     .hero {
@@ -667,6 +660,22 @@
       .hero-card {
         margin-top: 8px;
       }
+
+      .hero-grid > div:first-child {
+        text-align: center;
+      }
+
+      .hero h1,
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions,
+      .store-row,
+      .hero-points {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 640px) {
@@ -685,34 +694,32 @@
         width: 100%;
       }
 
-      .hero-actions,
-      .store-row {
+      .hero-actions {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
       }
 
-      .store-badge-wrap,
-      .store-placeholder-wrap {
+      .store-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
         width: 100%;
-        align-items: flex-start;
+      }
+
+      .store-badge-wrap {
+        flex: 1;
+        align-items: center;
       }
 
       .store-badge {
         width: 100%;
       }
 
-      .store-badge img {
+      .store-badge img,
+      .store-badge--google img {
         height: 50px;
-      }
-
-      .store-placeholder {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .final-box .store-badge-wrap,
-      .final-box .store-placeholder-wrap {
-        align-items: stretch;
+        width: auto;
       }
 
       .footer a {
@@ -734,15 +741,6 @@
         <a href="#how">How it works</a>
         <a href="#screens">Screens</a>
         <a href="#why">Why Openfore</a>
-        <a
-          href="https://apps.apple.com/ca/app/id6760089051"
-          class="store-badge store-badge--nav"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Download Openfore on the App Store"
-        >
-          <img src="images/download-on-the-app-store.svg" alt="Download on the App Store" />
-        </a>
       </div>
     </div>
   </nav>
@@ -754,7 +752,7 @@
           <div class="eyebrow">Golf, organized properly</div>
           <h1>
             Fill your foursome.<br />
-            <span class="accent">Find a round. Fast.</span>
+            <span class="accent">Find a round.<br />Fast.</span>
           </h1>
           <p>
             Openfore helps golfers find the best round of golf fast — whether you need players,
@@ -775,21 +773,23 @@
                 </a>
               </div>
 
-              <div class="store-placeholder-wrap" aria-label="Google Play coming soon">
-                <div class="store-placeholder">Google Play</div>
-                <div class="store-placeholder-note">Coming soon</div>
+              <div class="store-badge-wrap">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.base6998b26a371a30829845869d.app&pcampaignid"
+                  class="store-badge store-badge--google"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get Openfore on Google Play"
+                >
+                  <img src="images/google-play-badge.svg" alt="Get it on Google Play" />
+                </a>
               </div>
             </div>
 
-            <a href="https://app.openfore.golf" class="cta-btn-secondary" target="_blank" rel="noopener noreferrer">Open Web App</a>
+            <a href="https://app.openfore.golf" class="cta-btn-secondary cta-btn-tertiary" target="_blank" rel="noopener noreferrer">Open Web App</a>
             <a href="#screens" class="cta-btn-secondary">See how it works</a>
           </div>
 
-          <div class="hero-points">
-            <span>Find rounds near you</span>
-            <span>Fill open spots fast</span>
-            <span>See who you’re playing with</span>
-          </div>
         </div>
 
         <div class="hero-card">
@@ -837,7 +837,7 @@
     <section class="section" id="how">
       <div class="container">
         <div class="section-head">
-          <h2>Built for the way golfers actually organize golf.</h2>
+          <h2>Built for the way golfers actually want to organize their golf.</h2>
           <p>
             Openfore gives golfers three clean ways to use the app — join a round, fill a round, or plan one.
           </p>
@@ -854,7 +854,7 @@
 
           <div class="feature-card">
             <div class="feature-number">2</div>
-            <h3>Need Players</h3>
+            <h3>Find Players.</h3>
             <p>
               Post your tee time, fill open spots, and attract the right golfers instead of chasing people in group chats.
             </p>
@@ -874,9 +874,9 @@
     <section class="section" id="screens">
       <div class="container">
         <div class="section-head">
-          <h2>Clean enough to feel effortless. Smart enough to be useful.</h2>
+          <h2>Simple &amp; Effortless, yet<br />Smart &amp; Powerful.</h2>
           <p>
-            The product is designed to feel modern, fast, and exclusive — like the golf network you actually want to be part of.
+            The app is designed to be ridiculously simple, yet modern, fast, and exclusive — like the golf network you actually want to be a part of.
           </p>
         </div>
 
@@ -944,13 +944,20 @@ Finding the right round is special.</h3>
                 </a>
               </div>
 
-              <div class="store-placeholder-wrap" aria-label="Google Play coming soon">
-                <div class="store-placeholder">Google Play</div>
-                <div class="store-placeholder-note">Coming soon</div>
+              <div class="store-badge-wrap">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.base6998b26a371a30829845869d.app&pcampaignid"
+                  class="store-badge store-badge--google"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get Openfore on Google Play"
+                >
+                  <img src="images/google-play-badge.svg" alt="Get it on Google Play" />
+                </a>
               </div>
             </div>
 
-            <a href="https://app.openfore.golf" class="cta-btn-secondary" target="_blank" rel="noopener noreferrer">Open Web App</a>
+            <a href="https://app.openfore.golf" class="cta-btn-secondary cta-btn-tertiary" target="_blank" rel="noopener noreferrer">Open Web App</a>
           </div>
         </div>
       </div>
