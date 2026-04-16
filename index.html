@@ -498,33 +498,70 @@
     .feature-card {
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      padding: 26px;
+      border-radius: 28px;
+      padding: 32px;
       box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
-    .feature-number {
+    .feature-card:hover {
+      border-color: #2ecc71;
+      box-shadow: 0 20px 50px rgba(46, 204, 113, 0.25);
+    }
+
+    .feature-icon {
       display: inline-flex;
-      width: 36px;
-      height: 36px;
+      width: 56px;
+      height: 56px;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      background: rgba(46, 204, 113, 0.14);
-      color: #cbf7d9;
-      font-weight: 800;
-      margin-bottom: 18px;
+      border-radius: 16px;
+      background: #1a1f1c;
+      color: white;
+      font-size: 32px;
+      margin-bottom: 24px;
     }
 
     .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
+      margin: 0 0 16px;
+      font-size: 28px;
+      color: var(--text);
+      font-weight: 700;
     }
 
     .feature-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .feature-footer {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .feature-footer .label {
+      color: #2ecc71;
+    }
+
+    .feature-footer .arrow {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .arrow {
+      transform: translateX(6px);
     }
 
     .showcase {
@@ -787,7 +824,6 @@
             </div>
 
             <a href="https://app.openfore.golf" class="cta-btn-secondary cta-btn-tertiary" target="_blank" rel="noopener noreferrer">Open Web App</a>
-            <a href="#screens" class="cta-btn-secondary">See how it works</a>
           </div>
 
         </div>
@@ -837,7 +873,7 @@
     <section class="section" id="how">
       <div class="container">
         <div class="section-head">
-          <h2>Built for the way golfers actually want to organize their golf.</h2>
+          <h2>Three ways to play.<br />One beautiful app.</h2>
           <p>
             Openfore gives golfers three clean ways to use the app — join a round, fill a round, or plan one.
           </p>
@@ -845,27 +881,39 @@
 
         <div class="three-up">
           <div class="feature-card">
-            <div class="feature-number">1</div>
+            <div class="feature-icon">🔍</div>
             <h3>Find a Round</h3>
             <p>
               Browse nearby public tee times, filter by time and distance, and join the best round fast.
             </p>
+            <div class="feature-footer">
+              <span class="label">Instant matches • Live map</span>
+              <span class="arrow">→</span>
+            </div>
           </div>
 
           <div class="feature-card">
-            <div class="feature-number">2</div>
+            <div class="feature-icon">👥</div>
             <h3>Find Players.</h3>
             <p>
               Post your tee time, fill open spots, and attract the right golfers instead of chasing people in group chats.
             </p>
+            <div class="feature-footer">
+              <span class="label">Approval voting • Vibe match</span>
+              <span class="arrow">→</span>
+            </div>
           </div>
 
           <div class="feature-card">
-            <div class="feature-number">3</div>
+            <div class="feature-icon">📅</div>
             <h3>Plan a Round</h3>
             <p>
               Start a planning session with other golfers when you know you want to play, but not where or when yet.
             </p>
+            <div class="feature-footer">
+              <span class="label">Collaborative • No chaos</span>
+              <span class="arrow">→</span>
+            </div>
           </div>
         </div>
       </div>
@@ -918,6 +966,54 @@ Finding the right round is special.</h3>
           <p>
             Whether you’re filling a foursome or looking for a game today, Openfore makes it faster to connect with golfers you’ll actually enjoy playing with.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="community" style="padding: 70px 0; background: linear-gradient(180deg, #0a0d0b 0%, #0f1411 100%); border-top: 1px solid rgba(255,255,255,0.06);">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 56px;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(46, 204, 113, 0.10); border: 1px solid rgba(46, 204, 113, 0.18); color: #c5f1d6; font-size: 13px; font-weight: 700; margin-bottom: 20px;">
+            <span style="display: inline-block; width: 8px; height: 8px; background: #2ecc71; border-radius: 50%;"></span>
+            THE OPENFORE NETWORK
+          </div>
+          <h2 style="margin: 0 0 20px; font-size: clamp(30px, 4vw, 52px); line-height: 1.02; letter-spacing: -0.03em; color: var(--text);">Better golf starts with better people.</h2>
+          <p style="margin: 0; color: var(--muted); font-size: 18px; max-width: 560px; margin-left: auto; margin-right: auto;">Real golfers. Real rounds. Zero nonsense.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 28px;">
+            <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+              <div style="font-size: 40px;">🏌️‍♂️</div>
+              <div>
+                <div style="color: var(--text); font-weight: 700; margin-bottom: 4px;">Michael T., 8 handicap</div>
+                <div style="color: #2ecc71; font-size: 14px;">Toronto Golf Club • Member since Jan 2026</div>
+              </div>
+            </div>
+            <p style="margin: 0; color: var(--muted); font-size: 16px; font-style: italic; line-height: 1.6;">"I've played 11 rounds through Openfore. Every single one was with guys I would actually want to play with again. The vibe matching is genius."</p>
+          </div>
+
+          <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 28px;">
+            <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+              <div style="font-size: 40px;">🏌️‍♀️</div>
+              <div>
+                <div style="color: var(--text); font-weight: 700; margin-bottom: 4px;">Sarah P., 12 handicap</div>
+                <div style="color: #2ecc71; font-size: 14px;">Oakville • Member since Feb 2026</div>
+              </div>
+            </div>
+            <p style="margin: 0; color: var(--muted); font-size: 16px; font-style: italic; line-height: 1.6;">"Finally a golf app that feels exclusive instead of desperate. I posted a 7:30am tee time and had three perfect matches in under 12 minutes."</p>
+          </div>
+
+          <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 28px;">
+            <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+              <div style="font-size: 40px;">⛳</div>
+              <div>
+                <div style="color: var(--text); font-weight: 700; margin-bottom: 4px;">David Chen, scratch golfer</div>
+                <div style="color: #2ecc71; font-size: 14px;">Private club member • Vancouver</div>
+              </div>
+            </div>
+            <p style="margin: 0; color: var(--muted); font-size: 16px; font-style: italic; line-height: 1.6;">"This is what golf apps should have been all along. Clean, fast, and actually social. My regular group now plans everything inside Openfore."</p>
+          </div>
         </div>
       </div>
     </section>
