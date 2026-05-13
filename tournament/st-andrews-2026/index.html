@@ -2,87 +2,533 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>St. Andrew’s Tournament | Openfore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title><!-- TOURNAMENT_NAME --> × Openfore</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
+    /* ─── TEMPLATE VARIABLES ────────────────────────────────────────
+       To customise this page for a new tournament, update the values
+       in this :root block and replace the logo/text in the HTML body.
+    ─────────────────────────────────────────────────────────────── */
+    :root {
+      --gold:        #f0b429;
+      --gold-light:  #ffd97d;
+      --gold-glow:   rgba(240, 180, 41, 0.18);
+      --gold-border: rgba(240, 180, 41, 0.30);
+      --green:       #2ecc71;
+      --green-dim:   rgba(46, 204, 113, 0.15);
+      --green-border:rgba(46, 204, 113, 0.30);
+      --bg:          #080c0a;
+      --bg-card:     rgba(255,255,255,0.04);
+      --border:      rgba(255,255,255,0.08);
+      --text:        #ffffff;
+      --muted:       #8a9e94;
+      --radius:      20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior: none;
+    }
+
+    /* ─── PAGE WRAPPER ─────────────────────────────────────────────── */
+    .page {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 0 0 48px;
+      position: relative;
+    }
+
+    /* Subtle radial gold glow behind the hero */
+    .page::before {
+      content: "";
+      position: fixed;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(ellipse at center, rgba(240,180,41,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── LOGO BAR ──────────────────────────────────────────────────── */
+    .logo-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 28px 24px 0;
+    }
+
+    /* Tournament logo — swap the src per event.
+       If no tournament logo, remove .tournament-logo and .divider. */
+    .tournament-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255,255,255,0.20);
+      flex-shrink: 0;
+    }
+
+    .openfore-logo {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 40px 20px;
+      padding: 32px 24px 0;
     }
 
-    .container {
-      max-width: 700px;
-      margin: auto;
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--gold-glow);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
-    h1 {
+    .event-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    /* ─── TOURNAMENT_NAME: replace this span text per event ─── */
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero-meta {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .hero-meta strong {
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+    }
+
+    /* ─── PRIZE CARD ────────────────────────────────────────────────── */
+    .prize-section {
+      position: relative;
+      z-index: 1;
+      padding: 28px 20px 0;
+    }
+
+    .prize-card {
+      background: linear-gradient(135deg, rgba(240,180,41,0.12) 0%, rgba(255,255,255,0.04) 60%);
+      border: 1px solid var(--gold-border);
+      border-radius: 24px;
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative shimmer line */
+    .prize-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .prize-icon {
       font-size: 42px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .prize-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .prize-headline {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.1;
       margin-bottom: 10px;
     }
 
-    p {
-      font-size: 20px;
-      line-height: 1.6;
+    /* ─── PRIZE_VALUE: replace this text per event ─── */
+    .prize-headline em {
+      font-style: normal;
+      color: var(--gold-light);
     }
 
-    .buttons {
-      margin-top: 40px;
+    .prize-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 16px 28px;
-      background: #22c55e;
-      color: white;
+    /* ─── STEPS ─────────────────────────────────────────────────────── */
+    .steps-section {
+      position: relative;
+      z-index: 1;
+      padding: 32px 20px 0;
+    }
+
+    .steps-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    /* Vertical connector line between steps */
+    .step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 34px;
+      bottom: -10px;
+      width: 1px;
+      height: 10px;
+      background: var(--border);
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(240,180,41,0.12);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0;
+      margin-top: 1px;
+    }
+
+    .step-content strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Last step gets a green highlight — it's the payoff */
+    .step.step-final {
+      background: var(--green-dim);
+      border-color: var(--green-border);
+    }
+
+    .step.step-final .step-num {
+      background: rgba(46,204,113,0.15);
+      border-color: var(--green-border);
+      color: var(--green);
+    }
+
+    .step.step-final strong {
+      color: var(--green);
+    }
+
+    /* ─── DOWNLOAD SECTION ──────────────────────────────────────────── */
+    .download-section {
+      position: relative;
+      z-index: 1;
+      padding: 32px 20px 0;
+      text-align: center;
+    }
+
+    .download-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .badge-wrap {
+      flex: 1;
+      max-width: 160px;
+    }
+
+    .badge-wrap a {
+      display: block;
+    }
+
+    .badge-wrap img {
+      width: 100%;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────── */
+    .page-footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 36px 24px 0;
+    }
+
+    .page-footer a {
+      color: var(--muted);
       text-decoration: none;
-      border-radius: 12px;
-      font-weight: bold;
+      font-size: 13px;
+      font-weight: 500;
     }
 
-    .steps {
-      margin-top: 50px;
-      text-align: left;
-      background: rgba(255,255,255,0.08);
-      padding: 25px;
-      border-radius: 16px;
+    .page-footer a:hover {
+      color: var(--text);
     }
 
-    li {
-      margin-bottom: 14px;
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto 14px;
+    }
+
+    /* ─── DESKTOP CENTERING ─────────────────────────────────────────── */
+    @media (min-width: 430px) {
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 16px;
+      }
+
+      .page {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 32px;
+        overflow: hidden;
+        padding-bottom: 48px;
+      }
+
+      /* Re-render the glow inside the card on desktop */
+      .page::before {
+        position: absolute;
+        top: -60px;
+        border-radius: 50%;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="page">
 
-  <h1>Welcome Golfers!</h1>
+  <!-- ─── LOGO BAR ───────────────────────────────────────────────────
+       To customise per event:
+       - Replace tournament-logo.png with your tournament's logo file
+       - If no tournament logo exists, delete the <img> and <div class="logo-divider"> below
+  ──────────────────────────────────────────────────────────────── -->
+  <header class="logo-bar">
+    <!-- TOURNAMENT_LOGO: swap src, or remove this img + divider if no tournament logo -->
+    <img
+      src="tournament-logo.png"
+      alt="Tournament logo"
+      class="tournament-logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='none';"
+    />
+    <div class="logo-divider"></div>
 
-  <p>
-    Download Openfore and create your account to be entered
-    into today’s tournament prize draw.
-  </p>
+    <img
+      src="../../images/Openfore-Logo-white-300px.png"
+      alt="Openfore"
+      class="openfore-logo"
+    />
+  </header>
 
-  <div class="buttons">
-    <a class="btn" href="https://apps.apple.com">Download for iPhone</a>
-    <a class="btn" href="https://play.google.com">Download for Android</a>
-  </div>
 
-  <div class="steps">
-    <h2>How It Works</h2>
+  <!-- ─── HERO ──────────────────────────────────────────────────────
+       TOURNAMENT_NAME: replace the text inside <span> with the event name
+       TOURNAMENT_DATE / TOURNAMENT_LOCATION: update the meta line
+  ──────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="event-badge">
+      <span class="event-badge-dot"></span>
+      Official App Partner
+    </div>
 
-    <ol>
-      <li>Download Openfore</li>
-      <li>Create your account</li>
-      <li>Show your logged-in app at the booth</li>
-      <li>Receive your raffle ticket</li>
-    </ol>
-  </div>
+    <h1>
+      Welcome to<br />
+      <span><!-- TOURNAMENT_NAME → e.g. St. Andrews 2026 -->St. Andrews 2026</span>
+    </h1>
+
+    <p class="hero-meta">
+      <!-- TOURNAMENT_DATE → e.g. June 14–16, 2026 -->
+      <strong>June 14–16, 2026</strong>
+      &nbsp;·&nbsp;
+      <!-- TOURNAMENT_LOCATION → e.g. St. Andrews Links, Scotland -->
+      St. Andrews Links, Scotland
+    </p>
+  </section>
+
+
+  <!-- ─── PRIZE CARD ────────────────────────────────────────────────
+       PRIZE_VALUE: replace the <em> text with the actual prize
+  ──────────────────────────────────────────────────────────────── -->
+  <section class="prize-section">
+    <div class="prize-card">
+      <span class="prize-icon">🏆</span>
+      <p class="prize-label">Raffle Prize Draw</p>
+      <h2 class="prize-headline">
+        Win
+        <!-- PRIZE_VALUE → e.g. a $500 Golf Voucher -->
+        <em>a $500 Golf Voucher</em>
+      </h2>
+      <p class="prize-sub">
+        Download Openfore, create your account, and show us at the booth to claim your raffle ticket.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ─── STEPS ─────────────────────────────────────────────────── -->
+  <section class="steps-section">
+    <p class="steps-title">How to enter</p>
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <strong>Download Openfore</strong>
+        <p>Get the free app on iPhone or Android using the links below.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <strong>Create your account</strong>
+        <p>Set up your golfer profile — it takes under two minutes.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <strong>Show us at the booth</strong>
+        <p>Find us at the Openfore booth and show your logged-in app.</p>
+      </div>
+    </div>
+
+    <div class="step step-final">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <strong>Claim your raffle ticket</strong>
+        <p>We'll hand you a ticket for today's prize draw. Good luck!</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── DOWNLOAD ───────────────────────────────────────────────── -->
+  <section class="download-section">
+    <p class="download-label">Download free</p>
+    <div class="badge-row">
+      <div class="badge-wrap">
+        <a
+          href="https://apps.apple.com/ca/app/id6760089051"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download on the App Store"
+        >
+          <img src="../../images/download-on-the-app-store.svg" alt="Download on the App Store" />
+        </a>
+      </div>
+      <div class="badge-wrap">
+        <a
+          href="https://play.google.com/store/apps/details?id=com.base6998b26a371a30829845869d.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get it on Google Play"
+        >
+          <img src="../../images/google-play-badge.svg" alt="Get it on Google Play" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="page-footer">
+    <div class="footer-divider"></div>
+    <a href="https://openfore.golf">openfore.golf</a>
+  </footer>
 
 </div>
 
