@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>St. Andrew’s Tournament | Openfore</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 16px 28px;
+      background: #22c55e;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    .steps {
+      margin-top: 50px;
+      text-align: left;
+      background: rgba(255,255,255,0.08);
+      padding: 25px;
+      border-radius: 16px;
+    }
+
+    li {
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Welcome Golfers!</h1>
+
+  <p>
+    Download Openfore and create your account to be entered
+    into today’s tournament prize draw.
+  </p>
+
+  <div class="buttons">
+    <a class="btn" href="https://apps.apple.com">Download for iPhone</a>
+    <a class="btn" href="https://play.google.com">Download for Android</a>
+  </div>
+
+  <div class="steps">
+    <h2>How It Works</h2>
+
+    <ol>
+      <li>Download Openfore</li>
+      <li>Create your account</li>
+      <li>Show your logged-in app at the booth</li>
+      <li>Receive your raffle ticket</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>
