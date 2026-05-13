@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Exclude draft/test pages
+Disallow: /index2.html
+Disallow: /index3.html
+Disallow: /index4.html
+
+# Exclude tournament landing pages (QR code pages, not for search)
+Disallow: /tournament/
+
+Sitemap: https://openfore.golf/sitemap.xml
