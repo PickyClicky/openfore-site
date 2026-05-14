@@ -198,6 +198,22 @@
       color: var(--white);
     }
 
+    .nav-links a.nav-merch {
+      color: var(--green);
+      border: 1px solid rgba(46, 204, 113, 0.35);
+      background: rgba(46, 204, 113, 0.08);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-links a.nav-merch:hover {
+      color: var(--green);
+      background: rgba(46, 204, 113, 0.16);
+      border-color: rgba(46, 204, 113, 0.55);
+    }
+
     .cta-btn,
     .cta-btn-secondary {
       display: inline-flex;
@@ -810,6 +826,7 @@
         <a href="#how">How it works</a>
         <a href="#screens">Screens</a>
         <a href="#why">Why Openfore</a>
+        <a href="https://merch.openfore.golf" class="nav-merch" target="_blank" rel="noopener noreferrer">Merch</a>
       </div>
     </div>
   </nav>
